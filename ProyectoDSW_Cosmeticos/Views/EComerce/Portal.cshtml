@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.Producto>
+
+    <link rel="stylesheet" href="~/css/StyleSheet.css"/>
+
+@{
+    ViewData["Title"] = "Portal";
+}
+
+<h1>Portal</h1>
+
+<p>
+    <a asp-action="Resumen" asp-controller="EComerce" class="btn btn-primary">Ir a la canasta</a>
+</p>
+
+<div class="portal">
+    @foreach(var item in Model){
+    <div class="registro">
+            <em class="h5">@Html.DisplayFor(modelItem => item.nombreproducto)</em>
+        <br/>
+            <em class="fw-bold opacity-75">Tipo: @Html.DisplayFor(modelItem => item.nombrecategoria)</em>
+        <br/>
+            <em class="h4 text-primary">S/. @Html.DisplayFor(modelItem => item.precio)</em>
+        <br/>
+        <em>stock: </em>@Html.DisplayFor(modelItem => item.unidades)
+        <br/>
+        <img class="imagen" src="@Url.Content(string.Format("~/img/{0}.jpg", item.idproducto)) " />
+        <br/>
+            @Html.ActionLink("Agregar", "AgregarACarrito" ,new {id = item.idproducto}, new{ @class = "btn btn-primary" })
+    </div>
+    }
+</div>

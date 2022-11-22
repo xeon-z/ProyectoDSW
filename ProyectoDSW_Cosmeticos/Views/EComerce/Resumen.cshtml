@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.ItemProducto>
+
+@{
+    ViewData["Title"] = "Resumen";
+}
+
+<h1>Resumen</h1>
+
+<p>
+    <a asp-action="Portal" class="btn btn-primary">Seguir comprando</a>
+    <a asp-action="Comprar" class="btn btn-warning">Realizar Compra</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idproducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreproducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombrecategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.monto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombrecategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.monto)
+            </td>
+            <td>
+                    @Html.ActionLink("Delete", "Delete", new {id=item.idproducto, q=item.cantidad },new{ @class = "btn btn-danger" })
+            </td>
+        </tr>
+}   
+    <tr>
+        <td colspan="5">Total del Pedido</td>
+        <td>@Model.Sum(c=>c.monto)</td>
+    </tr>
+    </tbody>
+</table>

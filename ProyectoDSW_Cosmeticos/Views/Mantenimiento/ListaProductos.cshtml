@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.Producto>
+
+@{
+    ViewData["Title"] = "ListaProductos";
+}
+
+<h1>ListaProductos</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="AgregarProducto">Registrar nuevo Producto</a>
+</p>
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idproducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreproducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombrecategoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.unidades)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombrecategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unidades)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar", "EditarProducto", new { id=item.idproducto },new { @class = "btn btn-primary" }) 
+                    @Html.ActionLink("Eliminar", "EliminarProducto", new {id=item.idproducto },new { @class = "btn btn-danger" }) 
+            </td>
+        </tr>
+}       
+    </tbody>    
+</table>
+<div>@ViewBag.mensaje</div>
+<div>
+<a class="btn btn-primary" href="/EComerce/Portal">Regresar al Portal</a>
+</div>

@@ -1,0 +1,74 @@
+﻿@model ProyectoDSW_Cosmeticos.Models.Producto
+
+@{
+    ViewData["Title"] = "AgregarACarrito";
+}
+<style>
+    .imgportal {
+        
+        height: 200px;
+        margin-left: 15%;
+        margin-right: 15%;
+        margin-top: 10px
+    }
+</style>
+<h1>Agregar al Carrito</h1>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.idproducto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.idproducto)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.nombreproducto)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.nombreproducto)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.nombrecategoria)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.nombrecategoria)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.precio)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.precio)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.unidades)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.unidades)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <img class="imgportal" src="@Url.Content($"~/img/{Model.idproducto}.jpg")" />
+        </div>
+    </div>
+</div>
+
+<div>
+    <form action="AgregarACarrito" method="post">
+        @Html.Hidden("idproducto",Model.idproducto)
+        <div class="row">
+            <div class="col-md-2">Ingrese la cantidad</div>
+            <div class="col-md-10">@Html.TextBox("cantidad",1, new{type="number", min=1, max=Model.unidades})</div>
+            <div class="col-md-2"><input type="submit" value="Agregar" class="btn btn-primary" /></div>
+            <div class="col-md-2"><a asp-action="Portal" class="btn btn-primary">Retornar al Portal</a></div>
+        </div>
+    </form>
+    <div class="alert-success">
+        @ViewBag.mensaje
+    </div>
+</div>
