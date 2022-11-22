@@ -366,7 +366,7 @@ go
 
 -- Avance 09/11/2022--
 
-
+/*
 create or alter proc usp_acceso_usuario
 @usuario varchar(30),
 @clave varchar(10),
@@ -399,6 +399,7 @@ Begin
 			End
 End
 go
+*/
 
 create or alter proc usp_acceso_usuario
 @usuario varchar(30),
