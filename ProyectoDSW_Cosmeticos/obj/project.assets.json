@@ -9257,11 +9257,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CIBERTEC\\CICLO V\\Desarrollo de Servicios Web I\\Proyecto Final\\ProyectoDSW_Cosmeticos _ Avance 08.11\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\ProyectoDSW\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos.csproj",
       "projectName": "ProyectoDSW_Cosmeticos",
-      "projectPath": "D:\\CIBERTEC\\CICLO V\\Desarrollo de Servicios Web I\\Proyecto Final\\ProyectoDSW_Cosmeticos _ Avance 08.11\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos.csproj",
+      "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ProyectoDSW\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\CIBERTEC\\CICLO V\\Desarrollo de Servicios Web I\\Proyecto Final\\ProyectoDSW_Cosmeticos _ Avance 08.11\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos\\obj\\",
+      "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ProyectoDSW\\ProyectoDSW_Cosmeticos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

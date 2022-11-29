@@ -10,6 +10,6 @@ namespace ProyectoDSW_Cosmeticos.Models
         [Display(Name = "IdCategoria")] public int idcategoria { get; set; }
         [Display(Name = "Precio")] public decimal precio { get; set; }
         [Display(Name = "Unidades Disponibles")] public Int16 unidades { get; set; }
-        [Display(Name = "Foto")] public string ruta { get; set; }
+        [Display(Name = "Foto")] public string ruta { get; set; }        
     }
 }

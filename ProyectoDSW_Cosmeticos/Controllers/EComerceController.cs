@@ -33,7 +33,8 @@ namespace ProyectoDSW_Cosmeticos.Controllers
                         nombreproducto = dr.GetString(1),
                         nombrecategoria = dr.GetString(2),
                         precio = dr.GetDecimal(3),
-                        unidades = dr.GetInt16(4)
+                        unidades = dr.GetInt16(4),
+                        ruta = dr.GetString(5)
                     });
                 }
             }

@@ -23,7 +23,7 @@
         <br/>
         <em>stock: </em>@Html.DisplayFor(modelItem => item.unidades)
         <br/>
-        <img class="imagen" src="@Url.Content(string.Format("~/img/{0}.jpg", item.idproducto)) " />
+        <img class="imagen" src="@Url.Content(string.Format("~/img/{0}.jpg", item.ruta)) " />
         <br/>
             @Html.ActionLink("Agregar", "AgregarACarrito" ,new {id = item.idproducto}, new{ @class = "btn btn-primary" })
     </div>

@@ -164,9 +164,9 @@ CREATE TABLE Clientes (
 )
 go
 
-INSERT INTO Clientes 
-VALUES('07245621', 'Maria', 'Becerra', 'Av josé Paz 148',' Lince','957589535'),
-VALUES('71829365', 'Maria', 'Becerra', 'Av josé Paz 148',' Lince','957589535')
+INSERT INTO Clientes VALUES('07245621', 'Maria', 'Becerra', 'Av josé Paz 148',' Lince','957589535')
+GO
+INSERT INTO Clientes VALUES('71829365', 'Juana', 'Hernandez', 'Av Angamos 255',' Miraflores','952599535')
 go
 
 CREATE TABLE Empleados (
@@ -191,13 +191,15 @@ CREATE TABLE Productos (
   NombreProducto varchar(40) not null,
   IdCategoria int References Categorias,
   PrecioUnidad decimal(10,0) not null,
-  UnidadesEnExistencia smallint not null)
+  UnidadesEnExistencia smallint not null,
+  Foto varchar(255)
+)
 go
 
 --registro de productos
-INSERT INTO Productos VALUES( 'Labial Rosado con brillo', '1' ,'15', '39')
-INSERT INTO Productos VALUES('Desodorante en Aerosol OLD SPICE 150ml', '8' ,'12.90', '27')
-INSERT INTO Productos VALUES( 'Shampoo Head & Shoulders frasco 375 ML', '4' ,'15.90', '15')
+INSERT INTO Productos VALUES( 'Labial Rosado con brillo', '1' ,'15', '39', '1')
+INSERT INTO Productos VALUES('Desodorante en Aerosol OLD SPICE 150ml', '8' ,'12.90', '27','2')
+INSERT INTO Productos VALUES( 'Shampoo Head & Shoulders frasco 375 ML', '4' ,'15.90', '15','3')
 go
 --
 CREATE TABLE tb_pedidos(
@@ -216,6 +218,7 @@ create table tb_pedidos_deta(
 	precio decimal
 )
 GO
+
 --Funcion
 create or alter function dbo.autogenera() returns int
 As
@@ -245,8 +248,12 @@ go
 Select * from Usuarios
 go
 
-----------------------------------------------------------------------------
+select * from tb_pedidos
+go
+select * from tb_pedidos_deta
+go
 
+----------------------------------------------------------------------------
 --Procedures
 --Login
 
@@ -272,22 +279,14 @@ Begin
 End
 go
 
-
 declare @full varchar(255), @sw int
 exec usp_acceso_usuario 'enzo','1234',@full output, @sw output
 print @full
 go
---listado
-/*
-  IdProducto int primary key,
-  NombreProducto varchar(40) not null,
-  IdCategoria int References Categorias,
-  PrecioUnidad decimal(10,0) not null,
-  UnidadesEnExistencia smallint not null)*/
 
 create or alter proc usp_productos
 as
-select IdProducto, NombreProducto, NombreCategoria, PrecioUnidad, UnidadesEnExistencia from Productos
+select IdProducto, NombreProducto, NombreCategoria, PrecioUnidad, UnidadesEnExistencia, Foto from Productos
 p join Categorias as c on p.IdCategoria= c.IdCategoria
 go
 
@@ -310,10 +309,11 @@ create or alter proc usp_registrar_producto
 @Nombre varchar(40),
 @IdCat int ,
 @Pre decimal(10,0),
-@stock smallint
+@stock smallint,
+@foto varchar(255)
 as
 insert into Productos 
-values (@Nombre, @IdCat, @Pre, @stock)
+values (@Nombre, @IdCat, @Pre, @stock, @foto)
 go
 --
 create or alter proc usp_editar_producto
@@ -321,10 +321,11 @@ create or alter proc usp_editar_producto
 @Nombre varchar(40),
 @IdCat int ,
 @Pre decimal(10,0),
-@stock smallint
+@stock smallint,
+@foto varchar(255)
 as
 update Productos 
-set NombreProducto= @Nombre, IdCategoria=@IdCat, PrecioUnidad=@Pre, UnidadesEnExistencia=@stock
+set NombreProducto= @Nombre, IdCategoria=@IdCat, PrecioUnidad=@Pre, UnidadesEnExistencia=@stock, Foto=@foto
 where IdProducto=@id
 go
 --
@@ -362,44 +363,6 @@ create or alter proc usp_actualiza_stock
 as
 	Update Productos set UnidadesEnExistencia-=@cant where IdProducto = @idproducto
 go
-
-
--- Avance 09/11/2022--
-
-/*
-create or alter proc usp_acceso_usuario
-@usuario varchar(30),
-@clave varchar(10),
-@fullname varchar(255) output,
-@sw int output,
-@rol char(1)
-As
-Begin
-	Set @fullname=(Select CONCAT(e.NomEmpleado, space(1),e.ApeEmpleado)
-			from Usuarios as u join Empleados as e on u.Dni=e.Dni 
-			where Clave=@clave and Usuario=@usuario)
-	if(@fullname is null)
-		Begin
-			Set @fullname='Usuario o Clave Incorrecta'
-			Set @sw=0
-		End
-	else
-		Begin
-			Set @rol=(Select U.Rol
-					from Usuarios as u join Empleados as e on u.Dni=e.Dni 
-					where Clave=@clave and Usuario=@usuario)
-				if(@rol=1)
-					Begin
-						Set @sw=2
-					End
-				else
-					Begin
-						Set @sw=1
-					End
-			End
-End
-go
-*/
 
 create or alter proc usp_acceso_usuario
 @usuario varchar(30),

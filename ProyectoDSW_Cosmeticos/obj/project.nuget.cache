@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NfvQSzWh9A6n+fzORk5atvR6e/cjUtV3JoG9W5WmBbJZXRElOI/pTOm073MK1DM+POeEJnG9VbET7qcPP0G/GQ==",
+  "dgSpecHash": "prxGukc/H2JtJLdo1Mvh8nv+VhJlpRGIgIwHlyWwe+CAllVbE4Nwp/PjULJ7snGLgmxUuMpYr8VlduodRFG9NA==",
   "success": true,
-  "projectFilePath": "D:\\CIBERTEC\\CICLO V\\Desarrollo de Servicios Web I\\Proyecto Final\\ProyectoDSW_Cosmeticos _ Avance 08.11\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos.csproj",
+  "projectFilePath": "C:\\Users\\Lenovo\\Documents\\GitHub\\ProyectoDSW\\ProyectoDSW_Cosmeticos\\ProyectoDSW_Cosmeticos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
