@@ -9,7 +9,7 @@ namespace ProyectoDSW_Cosmeticos.Controllers
 {
     public class AccesoController : Controller
     {
-        string cadena = @"server = DESKTOP-5TUNJO3;database = Cosmetica;Trusted_Connection = True;MultipleActiveResultSets = True;TrustServerCertificate = False;Encrypt = False";
+        string cadena = @"server = DESKTOP-53VKG7K;database = Cosmetica;Trusted_Connection = True;MultipleActiveResultSets = True;TrustServerCertificate = False;Encrypt = False";
 
         string verifica(string lg, string clave, char rol)
         {

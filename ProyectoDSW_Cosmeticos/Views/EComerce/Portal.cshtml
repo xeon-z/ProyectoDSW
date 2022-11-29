@@ -5,27 +5,42 @@
 @{
     ViewData["Title"] = "Portal";
 }
-
-<h1>Portal</h1>
-
-<p>
-    <a asp-action="Resumen" asp-controller="EComerce" class="btn btn-primary">Ir a la canasta</a>
-</p>
-
-<div class="portal">
-    @foreach(var item in Model){
-    <div class="registro">
-            <em class="h5">@Html.DisplayFor(modelItem => item.nombreproducto)</em>
-        <br/>
-            <em class="fw-bold opacity-75">Tipo: @Html.DisplayFor(modelItem => item.nombrecategoria)</em>
-        <br/>
-            <em class="h4 text-primary">S/. @Html.DisplayFor(modelItem => item.precio)</em>
-        <br/>
-        <em>stock: </em>@Html.DisplayFor(modelItem => item.unidades)
-        <br/>
-        <img class="imagen" src="@Url.Content(string.Format("~/img/{0}.jpg", item.ruta)) " />
-        <br/>
-            @Html.ActionLink("Agregar", "AgregarACarrito" ,new {id = item.idproducto}, new{ @class = "btn btn-primary" })
+<nav class="navbar fixed-top bg-primary">
+    <div class="container">
+        <a class="navbar-brand text-white title-nav" href="Portal">BBB - Bueno Barato y Bonito!!!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="text-white" id="t">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-5">
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="#">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/Mantenimiento/ListaProductos">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Resumen" asp-controller="EComerce" class="btn btn-warning">Carrito</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    }
+</nav>
+<div class="mt-5 pt-5">
+    <section class="d-flex flex-wrap justify-content-center gap-3 text-center">
+                @foreach (var item in Model)
+                {
+                    <div class="card p-4 bg-opacity-100 shadow-sm" style="width: 18rem;">
+                        <img class="imagen" src="@Url.Content(string.Format("~/img/{0}.jpg", item.ruta)) " />
+                        <div class="card-body">
+                            <h5 class="card-title"><em class="h5">@Html.DisplayFor(modelItem => item.nombreproducto)</em></h5>
+                            <p class="card-text"><em class="fw-bold opacity-75">Tipo: @Html.DisplayFor(modelItem => item.nombrecategoria)</em></p>
+                            <p class="card-text"><small class="text-muted"><em class="h4 text-primary">S/. @Html.DisplayFor(modelItem => item.precio)</em></small></p>
+                            <p class="card-text"><small class="text-muted"><em>stock: </em>@Html.DisplayFor(modelItem => item.unidades)</small></p>                           
+                        </div>
+                @Html.ActionLink("Agregar", "AgregarACarrito" ,new {id = item.idproducto}, new{ @class = "btn btn-success w-50 m-auto" })
+            </div>                                          
+                }
+   </section>
+
 </div>

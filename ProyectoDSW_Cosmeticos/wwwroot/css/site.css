@@ -9,10 +9,30 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    overflow-x: hidden;
+}
+.title-login {
+    color: #FFF;
+}
+.div-login{
+    border-radius:20px;
+}
+.bg-nav{
+    color:#FFF;
+    background:#00bb73;
+}
+.login-title{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.title-nav{
+    font-weight:bold;
 }

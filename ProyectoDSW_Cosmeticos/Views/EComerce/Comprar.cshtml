@@ -3,6 +3,28 @@
 @{
     ViewData["Title"] = "Comprar";
 }
+<nav class="navbar fixed-top bg-primary">
+    <div class="container">
+        <a class="navbar-brand text-white title-nav" href="Portal">BBB - Bueno Barato y Bonito!!!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="text-white" id="t">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-5">
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="#">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/Mantenimiento/ListaProductos">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Resumen" asp-controller="EComerce" class="btn btn-warning">Carrito</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 
 <h1>Comprar</h1>
 

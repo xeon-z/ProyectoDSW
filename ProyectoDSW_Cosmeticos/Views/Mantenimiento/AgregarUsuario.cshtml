@@ -1,0 +1,61 @@
+﻿@model ProyectoDSW_Cosmeticos.Models.Usuario
+
+@{
+    ViewData["Title"] = "AgregarUsuario";
+}
+
+<h1>AgregarUsuario</h1>
+
+<h4>Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AgregarUsuario">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Dni" class="control-label"></label>
+                <input asp-for="Dni" class="form-control" />
+                <span asp-validation-for="Dni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="login" class="control-label"></label>
+                <input asp-for="login" class="form-control" />
+                <span asp-validation-for="login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="clave" class="control-label"></label>
+                <input asp-for="clave" class="form-control" />
+                <span asp-validation-for="clave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="intentos" class="control-label"></label>
+                <input asp-for="intentos" class="form-control" />
+                <span asp-validation-for="intentos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fecBloqueo" class="control-label"></label>
+                <input asp-for="fecBloqueo" class="form-control" />
+                <span asp-validation-for="fecBloqueo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="rol" class="control-label"></label>
+                <input asp-for="rol" class="form-control" />
+                <span asp-validation-for="rol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Registrar" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="listaUsuarios">Regresar a la Lista</a>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="alert-success mt-3">
+        @ViewBag.mensaje
+    </div>
+</div>
