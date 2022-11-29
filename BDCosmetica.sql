@@ -195,11 +195,37 @@ CREATE TABLE Productos (
   Foto varchar(255)
 )
 go
+/*
+INSERT INTO Categorias  VALUES('Maquillaje')
+INSERT INTO Categorias  VALUES('Perfumes')
+INSERT INTO Categorias  VALUES('Cuidado Corporal')
+INSERT INTO Categorias  VALUES('Cabello')
+INSERT INTO Categorias  VALUES('Accesorios')
+INSERT INTO Categorias  VALUES('Aceites')
+INSERT INTO Categorias  VALUES('Cuidado de la Piel')
+INSERT INTO Categorias  VALUES('Hombres')
+INSERT INTO Categorias  VALUES('Niños y Bebe')
+go
+*/
 
 --registro de productos
 INSERT INTO Productos VALUES( 'Labial Rosado con brillo', '1' ,'15', '39', '1')
 INSERT INTO Productos VALUES('Desodorante en Aerosol OLD SPICE 150ml', '8' ,'12.90', '27','2')
 INSERT INTO Productos VALUES( 'Shampoo Head & Shoulders frasco 375 ML', '4' ,'15.90', '15','3')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','4')
+
+INSERT INTO Productos VALUES( 'Gel de ducha exfoliante', '3' ,'18.90', '10','5')
+INSERT INTO Productos VALUES( 'Talco perfumado', '3' ,'11.90', '10','6')
+INSERT INTO Productos VALUES( 'Crema para manos', '3' ,'14.90', '10','7')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','8')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','9')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','10')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','11')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','12')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','13')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','14')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','15')
+INSERT INTO Productos VALUES( 'Gel para depilar ', '3' ,'14.90', '10','16')
 go
 --
 CREATE TABLE tb_pedidos(
