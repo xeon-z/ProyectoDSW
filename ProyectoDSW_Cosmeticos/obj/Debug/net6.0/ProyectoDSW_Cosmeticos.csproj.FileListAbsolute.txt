@@ -1050,3 +1050,8 @@ C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\obj\Debug\ne
 C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\obj\Debug\net6.0\ProyectoDSW_Cosmeticos.pdb
 C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\obj\Debug\net6.0\ProyectoDSW_Cosmeticos.genruntimeconfig.cache
 C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\obj\Debug\net6.0\ref\ProyectoDSW_Cosmeticos.dll
+C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Lenovo\Documents\GitHub\ProyectoDSW\ProyectoDSW_Cosmeticos\obj\Debug\net6.0\ProyectoDSW_Cosmeticos.MvcApplicationPartsAssemblyInfo.cs

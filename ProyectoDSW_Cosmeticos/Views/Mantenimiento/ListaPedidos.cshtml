@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.Pedido>
+
+@{
+    ViewData["Title"] = "ListaPedidos";
+}
+
+<h1>ListaPedidos</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idpedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fpedido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idpedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fpedido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>                
+                @Html.ActionLink("Details", "ListaPedidosDetalle", new { id=item.idpedido  }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.idpedido})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

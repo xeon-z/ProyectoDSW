@@ -128,12 +128,68 @@ namespace ProyectoDSW_Cosmeticos.Controllers
             return mensaje;
         }
 
+        IEnumerable<Pedido> pedidos()
+        {
+            List<Pedido> lista = new List<Pedido>();
+            using (SqlConnection cn = new SqlConnection(_configuration["ConnectionStrings:cn"]))
+            {
+                SqlCommand cmd = new SqlCommand("exec usp_pedidos", cn);
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new Pedido()
+                    {
+                        idpedido = dr.GetInt32(0),
+                        fpedido = dr.GetDateTime(1),
+                        dni = dr.GetString(2),
+                        nombre= dr.GetString(3),
+                        email = dr.GetString(4)                        
+                    });
+                }
+            }
+            return lista;
+        }
+
+        IEnumerable<PedidoDetalle> pedidosDetalle(int id)
+        {
+            List<PedidoDetalle> lista = new List<PedidoDetalle>();
+            using (SqlConnection cn = new SqlConnection(_configuration["ConnectionStrings:cn"]))
+            {
+                SqlCommand cmd = new SqlCommand("exec usp_pedidos_deta @idpedido", cn);
+                cn.Open();
+                cmd.Parameters.AddWithValue("@idpedido", id);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new PedidoDetalle()
+                    {
+                        idpedido = dr.GetInt32(0),
+                        nomproducto = dr.GetString(1),
+                        cantidad = dr.GetInt32(2),
+                        precio = dr.GetDecimal(3)
+                    });
+                }
+            }
+            return lista;
+        }
+
 
         public IActionResult ListaProductos()
-        {
-         
+        {         
             return View(productos());
         }
+
+        public IActionResult ListaPedidos()
+        {
+            return View(pedidos());
+        }
+
+        public IActionResult ListaPedidosDetalle(int id)
+        {
+            return View(pedidosDetalle(id));
+        }
+
         public IActionResult AgregarProducto()
         {
             ViewBag.categorias= new SelectList(categorias(), "id", "nombre");
@@ -168,6 +224,7 @@ namespace ProyectoDSW_Cosmeticos.Controllers
             ViewBag.mensaje = eliminarProd(reg.idproducto);
             return RedirectToAction("ListaProductos");
         }
+
 
     }
 }

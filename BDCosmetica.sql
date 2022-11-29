@@ -261,113 +261,6 @@ create or alter proc usp_acceso_usuario
 @usuario varchar(30),
 @clave varchar(10),
 @fullname varchar(255) output,
-@sw int output
-As
-Begin
-	Set @fullname=(Select CONCAT(e.NomEmpleado, space(1),e.ApeEmpleado)
-			from Usuarios as u join Empleados as e on u.Dni=e.Dni 
-			where Clave=@clave and Usuario=@usuario)
-	if(@fullname is null)
-		Begin
-			Set @fullname='Usuario o Clave Incorrecta'
-			Set @sw=0
-		End
-	else
-		Begin
-			Set @sw=1
-		End
-End
-go
-
-declare @full varchar(255), @sw int
-exec usp_acceso_usuario 'enzo','1234',@full output, @sw output
-print @full
-go
-
-create or alter proc usp_productos
-as
-select IdProducto, NombreProducto, NombreCategoria, PrecioUnidad, UnidadesEnExistencia, Foto from Productos
-p join Categorias as c on p.IdCategoria= c.IdCategoria
-go
-
-create or alter proc usp_filtrar_productos
-@nombre varchar(60)
-as
-select IdProducto, NombreProducto, NombreCategoria PrecioUnidad, UnidadesEnExistencia from Productos
-p join Categorias as c on p.IdCategoria= c.IdCategoria
-where NombreProducto LIKE @nombre+'%'
-go
---
-create or alter proc usp_categorias
-as
-select* from Categorias
-go
-exec usp_categorias
-go
---
-create or alter proc usp_registrar_producto
-@Nombre varchar(40),
-@IdCat int ,
-@Pre decimal(10,0),
-@stock smallint,
-@foto varchar(255)
-as
-insert into Productos 
-values (@Nombre, @IdCat, @Pre, @stock, @foto)
-go
---
-create or alter proc usp_editar_producto
-@id int,
-@Nombre varchar(40),
-@IdCat int ,
-@Pre decimal(10,0),
-@stock smallint,
-@foto varchar(255)
-as
-update Productos 
-set NombreProducto= @Nombre, IdCategoria=@IdCat, PrecioUnidad=@Pre, UnidadesEnExistencia=@stock, Foto=@foto
-where IdProducto=@id
-go
---
-create or alter proc usp_eliminar_producto
-@id int
-as
-delete Productos 
-where IdProducto=@id
-go
---
-create or alter proc usp_agrega_pedido
-@idpedido int output,
-@dni varchar(8),
-@nombre varchar(255),
-@email varchar(255)
-as
-begin 
-	set @idpedido = dbo.autogenera()
-	insert tb_pedidos(idpedido,dni,nombre,email) values(@idpedido,@dni,@nombre,@email)
-end
-go
---
-create or alter proc usp_agrega_detalle
-@idpedido int,
-@idproducto int,
-@cantidad int,
-@precio decimal
-as
-	insert tb_pedidos_deta values(@idpedido,@idproducto,@cantidad,@precio)
-go
---
-create or alter proc usp_actualiza_stock
-@idproducto int,
-@cant smallint
-as
-	Update Productos set UnidadesEnExistencia-=@cant where IdProducto = @idproducto
-go
-
-create or alter proc usp_acceso_usuario
-@usuario varchar(30),
-@clave varchar(10),
-@fullname varchar(255) output,
 @sw int output,
 @rol char(1)
 As
@@ -397,21 +290,91 @@ Begin
 End
 go
 
--- Ejemplos:
-declare @nam varchar(255), @sw int
-exec usp_acceso_usuario 'enzo','1234',@nam output, @sw output,''
-print @sw
-print @nam
+create or alter proc usp_productos
+as
+select IdProducto, NombreProducto, NombreCategoria, PrecioUnidad, UnidadesEnExistencia, Foto from Productos
+p join Categorias as c on p.IdCategoria= c.IdCategoria
 go
 
-declare @nam varchar(255), @sw int
-exec usp_acceso_usuario 'john','666',@nam output, @sw output,''
-print @sw
-print @nam
+create or alter proc usp_filtrar_productos
+@nombre varchar(60)
+as
+select IdProducto, NombreProducto, NombreCategoria PrecioUnidad, UnidadesEnExistencia from Productos
+p join Categorias as c on p.IdCategoria= c.IdCategoria
+where NombreProducto LIKE @nombre+'%'
 go
 
-declare @nam varchar(255), @sw int
-exec usp_acceso_usuario 'mariabecerra@gmail.com','maria1',@nam output, @sw output,''
-print @sw
-print @nam
+create or alter proc usp_categorias
+as
+select* from Categorias
+go
+
+create or alter proc usp_pedidos
+as
+select* from tb_pedidos
+go
+
+create or alter proc usp_pedidos_deta
+@idpedido int
+as
+select idpedido, p.NombreProducto, cantidad, precio from tb_pedidos_deta pd join Productos  p on pd.idproducto = p.IdProducto  where idpedido = @idpedido
+go
+
+create or alter proc usp_registrar_producto
+@Nombre varchar(40),
+@IdCat int ,
+@Pre decimal(10,0),
+@stock smallint,
+@foto varchar(255)
+as
+insert into Productos 
+values (@Nombre, @IdCat, @Pre, @stock, @foto)
+go
+
+create or alter proc usp_editar_producto
+@id int,
+@Nombre varchar(40),
+@IdCat int ,
+@Pre decimal(10,0),
+@stock smallint,
+@foto varchar(255)
+as
+update Productos 
+set NombreProducto= @Nombre, IdCategoria=@IdCat, PrecioUnidad=@Pre, UnidadesEnExistencia=@stock, Foto=@foto
+where IdProducto=@id
+go
+
+create or alter proc usp_eliminar_producto
+@id int
+as
+delete Productos 
+where IdProducto=@id
+go
+
+create or alter proc usp_agrega_pedido
+@idpedido int output,
+@dni varchar(8),
+@nombre varchar(255),
+@email varchar(255)
+as
+begin 
+	set @idpedido = dbo.autogenera()
+	insert tb_pedidos(idpedido,dni,nombre,email) values(@idpedido,@dni,@nombre,@email)
+end
+go
+
+create or alter proc usp_agrega_detalle
+@idpedido int,
+@idproducto int,
+@cantidad int,
+@precio decimal
+as
+	insert tb_pedidos_deta values(@idpedido,@idproducto,@cantidad,@precio)
+go
+
+create or alter proc usp_actualiza_stock
+@idproducto int,
+@cant smallint
+as
+	Update Productos set UnidadesEnExistencia-=@cant where IdProducto = @idproducto
 go

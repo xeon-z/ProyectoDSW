@@ -5,7 +5,6 @@ namespace ProyectoDSW_Cosmeticos.Models
     {
         [Display (Name ="Codigo")]public int idproducto { get; set; }
         [Display(Name = "Description")] public string nombreproducto { get; set; }
-
         [Display(Name = "Categoria")] public string nombrecategoria { get; set; }
         [Display(Name = "IdCategoria")] public int idcategoria { get; set; }
         [Display(Name = "Precio")] public decimal precio { get; set; }
