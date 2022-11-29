@@ -133,9 +133,9 @@ INSERT INTO Categorias  VALUES('Accesorios')
 INSERT INTO Categorias  VALUES('Aceites')
 INSERT INTO Categorias  VALUES('Cuidado de la Piel')
 INSERT INTO Categorias  VALUES('Hombres')
-INSERT INTO Categorias  VALUES('Niños y Bebe')
+INSERT INTO Categorias  VALUES('Niï¿½os y Bebe')
 go
-
+--
 CREATE TABLE Usuarios (
   Dni varchar (8) primary key,
   Usuario varchar(30),
@@ -164,7 +164,7 @@ CREATE TABLE Clientes (
 )
 go
 
-INSERT INTO Clientes VALUES('07245621', 'Maria', 'Becerra', 'Av josé Paz 148',' Lince','957589535')
+INSERT INTO Clientes VALUES('07245621', 'Maria', 'Becerra', 'Av josï¿½ Paz 148',' Lince','957589535')
 GO
 INSERT INTO Clientes VALUES('71829365', 'Juana', 'Hernandez', 'Av Angamos 255',' Miraflores','952599535')
 go
@@ -328,6 +328,61 @@ as
 select IdProducto, NombreProducto, NombreCategoria PrecioUnidad, UnidadesEnExistencia from Productos
 p join Categorias as c on p.IdCategoria= c.IdCategoria
 where NombreProducto LIKE @nombre+'%'
+go
+
+declare @nam varchar(255), @sw int
+exec usp_acceso_usuario 'mariabecerra@gmail.com','maria1',@nam output, @sw output,''
+print @sw
+print @nam
+go
+--
+--usuario
+create or alter proc usp_usuarios
+as
+select* from Usuarios
+go
+exec usp_usuarios
+go
+--registrar
+create or alter proc usp_registrar_usuario
+@dni varchar(8),
+@usuario varchar(30) ,
+@clave varchar(30), 
+@nomcom varchar(60), 
+@rol char(1)
+as
+insert into Usuarios 
+values (@dni,@usuario,@clave, @nomcom, @rol,0,null)
+go
+
+exec usp_registrar_usuario '77335624','karla','12345','Karla Torres Castillo','1'
+go
+--actualizar usuario
+
+create or alter proc usp_editar_usuario
+@dni varchar(8),
+@usuario varchar(30) ,
+@clave varchar(30), 
+@nomcom varchar(60), 
+@rol char(1),
+@intentos int,
+@fecBloque datetime
+as
+update Usuarios 
+set Usuario= @usuario, Clave=@clave, NombreCompleto=@nomcom, Rol=@rol, intentos=@intentos, fecBloque=@fecBloque 
+where Dni=@dni
+go
+
+exec usp_editar_usuario '70559002','karlatc','1234567888','Karla Carolina Torres Castillo', '3', 2, '2021-06-21'
+go
+create or alter proc usp_eliminar_usuario
+@dni int
+as
+delete Usuarios 
+where Dni=@dni
+go
+
+exec usp_eliminar_usuario '77335624'
 go
 
 create or alter proc usp_categorias

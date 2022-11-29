@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.Pedido>
+﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.Usuario>
 
 @{
-    ViewData["Title"] = "ListaPedidos";
+    ViewData["Title"] = "listaUsuarios";
 }
 <nav class="navbar fixed-top bg-primary">
     <div class="container">
@@ -28,56 +28,67 @@
     </div>
 </nav>
 <div class="mt-5 pt-4">
-    
-<h1>Lista de Pedidos</h1>
-<hr />
+    <div class="d-flex align-items-center justify-content-between">
+<h1>Lista de Usuarios</h1>
+    <a class="btn btn-success" asp-action="AgregarUsuario">Registrar</a>
+    </div>
+<hr/>
+
 <table class="table table-dark table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idpedido)
+                @Html.DisplayNameFor(model => model.Dni)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fpedido)
+                @Html.DisplayNameFor(model => model.login)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.dni)
+                @Html.DisplayNameFor(model => model.clave)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.nombre)
+                @Html.DisplayNameFor(model => model.NombreCompleto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.email)
+                @Html.DisplayNameFor(model => model.intentos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rol)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idpedido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fpedido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dni)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                        @Html.ActionLink("Details", "ListaPedidosDetalle", new { id=item.idpedido  } ,new { @class = "btn btn-primary" })
-                        <!--  @Html.ActionLink("Delete", "Delete", new { id=item.idpedido})-->
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clave)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.intentos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rol)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarUsuario", new { id=item.Dni },new { @class = "btn btn-primary" }) 
+                   @Html.ActionLink("Eliminar", "EliminarUsuario", new { id=item.Dni },new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div>@ViewBag.mensaje</div>
 <div>
     <a class="btn btn-dark" href="/EComerce/Portal">ir al Portal</a>
 </div>

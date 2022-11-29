@@ -1,7 +1,7 @@
-﻿@model ProyectoDSW_Cosmeticos.Models.Producto
+﻿@model ProyectoDSW_Cosmeticos.Models.Usuario
 
 @{
-    ViewData["Title"] = "EditarProducto";
+    ViewData["Title"] = "EditarUsuario";
 }
 <nav class="navbar fixed-top bg-primary">
     <div class="container">
@@ -28,51 +28,56 @@
     </div>
 </nav>
 <div class="mt-5 pt-4">
-<h1 class="text-center">Editar el Producto</h1>
-
+<h1 class="text-center">Editar el Usuario</h1>
 <hr />
 <div class="row justify-content-center">
     <div class="col-md-4">
-        <form asp-action="EditarProducto">
+        <form asp-action="EditarUsuario">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="idproducto" class="control-label"></label>
-                <input asp-for="idproducto" class="form-control" readonly />
-                <span asp-validation-for="idproducto" class="text-danger"></span>
+                <label asp-for="Dni" class="control-label"></label>
+                <input asp-for="Dni" class="form-control" readonly />
+                <span asp-validation-for="Dni" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="nombreproducto" class="control-label"></label>
-                <input asp-for="nombreproducto" class="form-control" />
-                <span asp-validation-for="nombreproducto" class="text-danger"></span>
+                <label asp-for="login" class="control-label"></label>
+                <input asp-for="login" class="form-control" />
+                <span asp-validation-for="login" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="idcategoria" class="control-label"></label>
-                <select asp-for="idcategoria" asp-items="@ViewBag.categorias" class="form-select"></select>
+                <label asp-for="clave" class="control-label"></label>
+                <input asp-for="clave" class="form-control" />
+                <span asp-validation-for="clave" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="precio" class="control-label"></label>
-                <input asp-for="precio" class="form-control" />
-                <span asp-validation-for="precio" class="text-danger"></span>
+                <label asp-for="NombreCompleto" class="control-label"></label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="unidades" class="control-label"></label>
-                <input asp-for="unidades" class="form-control" />
-                <span asp-validation-for="unidades" class="text-danger"></span>
+                <label asp-for="intentos" class="control-label"></label>
+                <input asp-for="intentos" class="form-control" />
+                <span asp-validation-for="intentos" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ruta" class="control-label"></label>
-                <input asp-for="ruta" class="form-control" />
-                <span asp-validation-for="ruta" class="text-danger"></span>
+                <label asp-for="fecBloqueo" class="control-label"></label>
+                <input asp-for="fecBloqueo" class="form-control" />
+                <span asp-validation-for="fecBloqueo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="rol" class="control-label"></label>
+                <input asp-for="rol" class="form-control" />
+                <span asp-validation-for="rol" class="text-danger"></span>
             </div>
             <div class="form-group mt-3 d-flex justify-content-center gap-3">
                 <input type="submit" value="Registrar" class="btn btn-success" />
-                <a class="btn btn-warning" asp-action="ListaProductos">Regresar a Lista</a>
+                <a class="btn btn-warning" asp-action="listaUsuarios">Regresar a Lista</a>
             </div>
         </form>
     </div>
-        <div class="alert-success mt-3 text-center rounded-3">
+
+    <div class="alert-success mt-3 text-center rounded-3">
         @ViewBag.mensaje
     </div>
 </div>
 </div>
-

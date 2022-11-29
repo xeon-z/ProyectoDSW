@@ -12,63 +12,56 @@
         margin-top: 10px
     }
 </style>
-<h1>Agregar al Carrito</h1>
-
-<div>
-    <h4>Producto</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-6">
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.idproducto)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.idproducto)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.nombreproducto)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.nombreproducto)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.nombrecategoria)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.nombrecategoria)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.precio)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.precio)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.unidades)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.unidades)
-                </dd>
-            </dl>
-        </div>
-        <div class="col-md-6">
-            <img class="imgportal" src="@Url.Content($"~/img/{Model.idproducto}.jpg")" />
+<nav class="navbar fixed-top bg-primary">
+    <div class="container">
+        <a class="navbar-brand text-white title-nav" href="Portal">BBB - Bueno Barato y Bonito!!!</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="text-white" id="t">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-5">
+                <li class="nav-item">
+                    <a asp-action="Resumen" asp-controller="EComerce" class="btn btn-warning">Carrito</a>
+                </li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
 
-<div>
-    <form action="AgregarACarrito" method="post">
-        @Html.Hidden("idproducto",Model.idproducto)
-        <div class="row">
-            <div class="col-md-2">Ingrese la cantidad</div>
-            <div class="col-md-10">@Html.TextBox("cantidad",1, new{type="number", min=1, max=Model.unidades})</div>
-            <div class="col-md-2"><input type="submit" value="Agregar" class="btn btn-primary" /></div>
-            <div class="col-md-2"><a asp-action="Portal" class="btn btn-primary">Retornar al Portal</a></div>
+<div class="mt-5 pt-4">
+    <h4>Agregar al carrito</h4>
+    <hr />
+    <div class="d-flex align-items-center justify-content-center gap-4">
+        <div class="card m-0 p-4" style="max-width: 540px;">
+            <div class="row g-0">
+                 <div class="col-md-4 mr-3">
+                     <img class="imgportal" src="@Url.Content($"~/img/{Model.idproducto}.jpg")" />
+                 </div>
+                 <div class="col-md-8">
+                   <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(model => model.nombreproducto)</h5>
+                        <p class="card-text"> @Html.DisplayFor(model => model.nombrecategoria)</p>
+                        <p class="card-text"> <strong>Precio: S/.</strong>@Html.DisplayFor(model => model.precio)</p>
+                        <p class="card-text"> <strong>Unidades disponibles: </strong><small class="text-muted">@Html.DisplayFor(model => model.unidades) unds</small></p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-    <div class="alert-success">
+        <div>
+           <form action="AgregarACarrito" method="post">
+                @Html.Hidden("idproducto",Model.idproducto)
+                <div class="d-flex flex-column gap-3">
+                    <p class="col-md-12">Ingrese la cantidad:  @Html.TextBox("cantidad",1, new{type="number", min=1, max=Model.unidades})</p>                    
+                    <div class="col-md-12 d-flex gap-3 justify-content-between align">
+                        <input type="submit" value="Agregar" class="btn btn-success col-md-6" />
+                        <div class="col-md-6"><a asp-action="Portal" class="btn btn-primary">ir a Portal</a></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="alert-success mt-4 mx-auto col-md-6 rounded-3 text-center">
         @ViewBag.mensaje
     </div>
 </div>
+
