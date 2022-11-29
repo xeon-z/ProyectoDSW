@@ -3,10 +3,35 @@
 @{
     ViewData["Title"] = "ListaPedidos";
 }
-
-<h1>ListaPedidos</h1>
-
-<table class="table">
+<nav class="navbar fixed-top bg-primary">
+    <div class="container">
+        <a class="navbar-brand text-white title-nav" href="Portal">BBB - MANTENIMIENTOS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="text-white" id="t">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-3">
+                <li class="nav-item">
+                    <a asp-action="ListaProductos" asp-controller="Mantenimiento" class="btn btn-outline-light">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="listaUsuarios" asp-controller="Mantenimiento" class="btn btn-outline-light">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="ListaCategorias" asp-controller="Mantenimiento" class="btn btn-outline-light">Categorias</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="ListaPedidos" asp-controller="Mantenimiento" class="btn btn-outline-light">Pedidos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="mt-5 pt-4">
+    
+<h1>Lista de Pedidos</h1>
+<hr />
+<table class="table table-dark table-striped">
     <thead>
         <tr>
             <th>
@@ -45,11 +70,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.email)
             </td>
-            <td>                
-                @Html.ActionLink("Details", "ListaPedidosDetalle", new { id=item.idpedido  }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.idpedido})
+            <td>
+                        @Html.ActionLink("Details", "ListaPedidosDetalle", new { id=item.idpedido  } ,new { @class = "btn btn-primary" })
+                        <!--  @Html.ActionLink("Delete", "Delete", new { id=item.idpedido})-->
             </td>
         </tr>
 }
     </tbody>
 </table>
+<div>
+    <a class="btn btn-dark" href="/EComerce/Portal">ir al Portal</a>
+</div>
+</div>

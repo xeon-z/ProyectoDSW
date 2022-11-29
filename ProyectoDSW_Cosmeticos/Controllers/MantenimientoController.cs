@@ -77,11 +77,12 @@ namespace ProyectoDSW_Cosmeticos.Controllers
                 try
                 {
                     cn.Open();
-                    SqlCommand cmd = new SqlCommand("exec usp_registrar_producto @Nombre,@IdCat ,@Pre,@stock", cn);
+                    SqlCommand cmd = new SqlCommand("exec usp_registrar_producto @Nombre,@IdCat ,@Pre,@stock,@foto", cn);
                     cmd.Parameters.AddWithValue("@Nombre", reg.nombreproducto);
                     cmd.Parameters.AddWithValue("@IdCat", reg.idcategoria);
                     cmd.Parameters.AddWithValue("@Pre", reg.precio);
                     cmd.Parameters.AddWithValue("@stock", reg.unidades);
+                    cmd.Parameters.AddWithValue("@foto", reg.ruta);
                     cmd.ExecuteReader();
                     mensaje = $"Se ha agregado el producto {reg.nombreproducto}";
                 }
@@ -98,12 +99,13 @@ namespace ProyectoDSW_Cosmeticos.Controllers
                 try
                 {
                     cn.Open();
-                    SqlCommand cmd = new SqlCommand("exec usp_editar_producto @id,@Nombre,@IdCat ,@Pre,@stock", cn);
+                    SqlCommand cmd = new SqlCommand("exec usp_editar_producto @id,@Nombre,@IdCat ,@Pre,@stock,@foto", cn);
                     cmd.Parameters.AddWithValue("@id", reg.idproducto);
                     cmd.Parameters.AddWithValue("@Nombre", reg.nombreproducto);
                     cmd.Parameters.AddWithValue("@IdCat", reg.idcategoria);
                     cmd.Parameters.AddWithValue("@Pre", reg.precio);
                     cmd.Parameters.AddWithValue("@stock", reg.unidades);
+                    cmd.Parameters.AddWithValue("@foto", reg.ruta);
                     cmd.ExecuteReader();
                     mensaje = $"Se ha actualizado el producto {reg.nombreproducto}";
                 }

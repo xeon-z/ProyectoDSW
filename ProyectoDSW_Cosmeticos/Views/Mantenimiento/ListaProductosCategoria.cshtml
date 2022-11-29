@@ -3,10 +3,34 @@
 @{
     ViewData["Title"] = "ListaProductosCategoria";
 }
-
+<nav class="navbar fixed-top bg-primary">
+    <div class="container">
+        <a class="navbar-brand text-white title-nav" href="Portal">BBB - MANTENIMIENTOS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="text-white" id="t">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-3">
+                <li class="nav-item">
+                    <a asp-action="ListaProductos" asp-controller="Mantenimiento" class="btn btn-outline-light">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="listaUsuarios" asp-controller="Mantenimiento" class="btn btn-outline-light">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="ListaCategorias" asp-controller="Mantenimiento" class="btn btn-outline-light">Categorias</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="ListaPedidos" asp-controller="Mantenimiento" class="btn btn-outline-light">Pedidos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="mt-5 pt-4">
 <h1>Lista de Productos por Categoria</h1>
-
-<table class="table">
+<hr />
+    <table class="table table-dark table-striped">
     <thead>
         <tr>
             <th>
@@ -24,7 +48,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.ruta)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -50,5 +73,6 @@
     </tbody>
 </table>
 <div>
-    <a asp-action="ListaCategorias">Volver a Categorias</a>
+    <a class="btn btn-warning" asp-action="ListaCategorias">Volver a Categorias</a>
+</div>
 </div>
