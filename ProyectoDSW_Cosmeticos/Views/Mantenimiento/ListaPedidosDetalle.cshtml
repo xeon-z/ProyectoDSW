@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.PedidoDetalle>
+
+@{
+    ViewData["Title"] = "ListaPedidosDetalle";
+}
+
+<h1>Detalle del Pedido</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nomproducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>            
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="ListaPedidos" class="btn btn-primary">Volver a Pedidos</a>
+</div>

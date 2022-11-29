@@ -58,6 +58,7 @@ namespace ProyectoDSW_Cosmeticos.Controllers
             }
             return lista;
         }
+
         Producto Buscar(int id = 0)
         {
             Producto reg = productos().Where(p => p.idproducto == id).FirstOrDefault();
@@ -130,12 +131,67 @@ namespace ProyectoDSW_Cosmeticos.Controllers
             return mensaje;
         }
 
+        IEnumerable<Pedido> pedidos()
+        {
+            List<Pedido> lista = new List<Pedido>();
+            using (SqlConnection cn = new SqlConnection(_configuration["ConnectionStrings:cn"]))
+            {
+                SqlCommand cmd = new SqlCommand("exec usp_pedidos", cn);
+                cn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new Pedido()
+                    {
+                        idpedido = dr.GetInt32(0),
+                        fpedido = dr.GetDateTime(1),
+                        dni = dr.GetString(2),
+                        nombre= dr.GetString(3),
+                        email = dr.GetString(4)                        
+                    });
+                }
+            }
+            return lista;
+        }
+
+        IEnumerable<PedidoDetalle> pedidosDetalle(int id)
+        {
+            List<PedidoDetalle> lista = new List<PedidoDetalle>();
+            using (SqlConnection cn = new SqlConnection(_configuration["ConnectionStrings:cn"]))
+            {
+                SqlCommand cmd = new SqlCommand("exec usp_pedidos_deta @idpedido", cn);
+                cn.Open();
+                cmd.Parameters.AddWithValue("@idpedido", id);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new PedidoDetalle()
+                    {
+                        idpedido = dr.GetInt32(0),
+                        nomproducto = dr.GetString(1),
+                        cantidad = dr.GetInt32(2),
+                        precio = dr.GetDecimal(3)
+                    });
+                }
+            }
+            return lista;
+        }
 
         public IActionResult ListaProductos()
-        {
-         
+        {         
             return View(productos());
         }
+
+        public IActionResult ListaPedidos()
+        {
+            return View(pedidos());
+        }
+
+        public IActionResult ListaPedidosDetalle(int id)
+        {
+            return View(pedidosDetalle(id));
+        }
+
         public IActionResult AgregarProducto()
         {
             ViewBag.categorias= new SelectList(categorias(), "id", "nombre");
@@ -309,6 +365,110 @@ namespace ProyectoDSW_Cosmeticos.Controllers
             if (reg == null) return RedirectToAction("listaUsuarios");
             ViewBag.mensaje = eliminarUsu(reg.Dni);
             return RedirectToAction("listaUsuarios");
+        }
+
+        /*
+         * Mantenimiento Categorias
+         */
+
+        public IActionResult ListaCategorias()
+        {
+            return View(categorias());
+        }
+
+        public string agregarCat(Categoria reg)
+        {
+            string mensaje = "";
+            using (SqlConnection cn = new SqlConnection(_configuration["ConnectionStrings:cn"]))
+            {
+                try
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("exec usp_registrar_categoria @nom", cn);
+                    cmd.Parameters.AddWithValue("@nom", reg.nombre);                    
+                    cmd.ExecuteReader();
+                    mensaje = $"Se ha agregado la categoria {reg.nombre}";
+                }
+                catch (Exception ex) { mensaje = ex.Message; }
+                finally { cn.Close(); }
+            }
+            return mensaje;
+        }
+
+        public IActionResult AgregarCategoria()
+        {            
+            return View(new Categoria());
+        }
+        [HttpPost] public IActionResult AgregarCategoria(Categoria reg)
+        {            
+            ViewBag.mensaje = agregarCat(reg);
+            return View(reg);
+        }
+        public string actualizarCat(Categoria reg)
+        {
+            string mensaje = "";
+            using (SqlConnection cn = new SqlConnection(_configuration["ConnectionStrings:cn"]))
+            {
+                try
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("exec usp_editar_categoria @id,@nom", cn);
+                    cmd.Parameters.AddWithValue("@id", reg.id);
+                    cmd.Parameters.AddWithValue("@nom", reg.nombre);                    
+                    cmd.ExecuteReader();
+                    mensaje = $"Se ha actualizado la categoria {reg.nombre}";
+                }
+                catch (Exception ex) { mensaje = ex.Message; }
+                finally { cn.Close(); }
+            }
+            return mensaje;
+        }
+        Categoria BuscarCat(int id = 0)
+        {
+            Categoria reg = categorias().Where(p => p.id == id).FirstOrDefault();
+            if (reg == null)
+                reg = new Categoria();
+
+            return reg;
+
+        }
+        public IActionResult EditarCategoria(int id)
+        {
+            Categoria reg = BuscarCat(id);
+            if (reg == null) return RedirectToAction("ListaCategorias");
+            return View(reg);
+        }
+        [HttpPost] public IActionResult EditarCategoria(Categoria reg)
+        {            
+            ViewBag.mensaje = actualizarCat(reg);
+            return View(reg);
+        }
+
+        IEnumerable<Producto> productosCat(int id)
+        {
+            List<Producto> lista = new List<Producto>();
+            using (SqlConnection cn = new SqlConnection(_configuration["ConnectionStrings:cn"]))
+            {
+                SqlCommand cmd = new SqlCommand("exec usp_catProductos @idCat", cn);
+                cn.Open();
+                cmd.Parameters.AddWithValue("@idCat", id);                
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lista.Add(new Producto()
+                    {
+                        idproducto = dr.GetInt32(0),
+                        nombreproducto = dr.GetString(1),
+                        precio = dr.GetDecimal(2),
+                        unidades = dr.GetInt16(3)
+                    });
+                }
+            }
+            return lista;
+        }
+        public IActionResult ListaProductosCategoria(int id)
+        {
+            return View(productosCat(id));
         }
 
     }

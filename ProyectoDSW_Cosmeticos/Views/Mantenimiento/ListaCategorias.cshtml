@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.Categoria>
+
+@{
+    ViewData["Title"] = "ListaCategorias";
+}
+
+<h1>Lista Categorias</h1>
+
+<p>
+    <a asp-action="AgregarCategoria">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarCategoria", new { id=item.id }) |
+                @Html.ActionLink("Productos", "ListaProductosCategoria", new { id=item.id  })                 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
