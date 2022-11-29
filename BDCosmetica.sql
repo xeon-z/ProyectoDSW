@@ -120,20 +120,20 @@ set dateformat ymd
 go
 
 CREATE TABLE Categorias (
-  IdCategoria int primary key ,
+  IdCategoria int identity(1,1) primary key,
   NombreCategoria varchar(90) not null,
 )
 go
---registro de categorias
-INSERT INTO Categorias  VALUES(1, 'Maquillaje')
-INSERT INTO Categorias  VALUES(2, 'Perfumes')
-INSERT INTO Categorias  VALUES(3, 'Cuidado Corporal')
-INSERT INTO Categorias  VALUES(4, 'Cabello')
-INSERT INTO Categorias  VALUES(5, 'Accesorios')
-INSERT INTO Categorias  VALUES(6, 'Aceites')
-INSERT INTO Categorias  VALUES(7, 'Cuidado de la Piel')
-INSERT INTO Categorias  VALUES(8, 'Hombres')
-INSERT INTO Categorias  VALUES(9, 'Niños y Bebe')
+
+INSERT INTO Categorias  VALUES('Maquillaje')
+INSERT INTO Categorias  VALUES('Perfumes')
+INSERT INTO Categorias  VALUES('Cuidado Corporal')
+INSERT INTO Categorias  VALUES('Cabello')
+INSERT INTO Categorias  VALUES('Accesorios')
+INSERT INTO Categorias  VALUES('Aceites')
+INSERT INTO Categorias  VALUES('Cuidado de la Piel')
+INSERT INTO Categorias  VALUES('Hombres')
+INSERT INTO Categorias  VALUES('Niños y Bebe')
 go
 
 CREATE TABLE Usuarios (
@@ -377,4 +377,26 @@ create or alter proc usp_actualiza_stock
 @cant smallint
 as
 	Update Productos set UnidadesEnExistencia-=@cant where IdProducto = @idproducto
+go
+
+create or alter proc usp_registrar_categoria
+@nom varchar(90)
+as
+insert into Categorias 
+values (@nom)
+go
+
+create or alter proc usp_editar_categoria
+@id int,
+@nom varchar(90)
+as
+update Categorias
+set NombreCategoria= @nom
+where IdCategoria=@id
+go
+
+create or alter proc usp_catProductos
+@idCat int
+as
+select p.IdProducto, p.NombreProducto, p.PrecioUnidad, p.UnidadesEnExistencia from Categorias c Join Productos p on c.IdCategoria = p.IdCategoria where c.IdCategoria = @idCat
 go

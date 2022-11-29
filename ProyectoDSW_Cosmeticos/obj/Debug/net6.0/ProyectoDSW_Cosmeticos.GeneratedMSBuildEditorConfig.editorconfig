@@ -51,12 +51,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Mantenimiento/AgregarCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudGVuaW1pZW50b1xBZ3JlZ2FyQ2F0ZWdvcmlhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Mantenimiento/AgregarProducto.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudGVuaW1pZW50b1xBZ3JlZ2FyUHJvZHVjdG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Mantenimiento/EditarCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudGVuaW1pZW50b1xFZGl0YXJDYXRlZ29yaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Mantenimiento/EditarProducto.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudGVuaW1pZW50b1xFZGl0YXJQcm9kdWN0by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Mantenimiento/ListaCategorias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudGVuaW1pZW50b1xMaXN0YUNhdGVnb3JpYXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Mantenimiento/ListaPedidos.cshtml]
@@ -69,6 +81,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Mantenimiento/ListaProductos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudGVuaW1pZW50b1xMaXN0YVByb2R1Y3Rvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Mantenimiento/ListaProductosCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFudGVuaW1pZW50b1xMaXN0YVByb2R1Y3Rvc0NhdGVnb3JpYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Lenovo/Documents/GitHub/ProyectoDSW/ProyectoDSW_Cosmeticos/Views/Shared/Error.cshtml]

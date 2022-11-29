@@ -1,9 +1,10 @@
-﻿namespace ProyectoDSW_Cosmeticos.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace ProyectoDSW_Cosmeticos.Models
 {
     public class Categoria
     {
-        public int id { get; set; }
-        public string nombre { get; set; }
+        [Display(Name = "ID")] public int id { get; set; }
+        [Display(Name = "Nombre")] public string nombre { get; set; }
         public Categoria() {
             nombre = "";
         }

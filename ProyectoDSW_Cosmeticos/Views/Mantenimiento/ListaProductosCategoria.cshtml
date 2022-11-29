@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProyectoDSW_Cosmeticos.Models.Producto>
+
+@{
+    ViewData["Title"] = "ListaProductosCategoria";
+}
+
+<h1>Lista de Productos por Categoria</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idproducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreproducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.unidades)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ruta)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unidades)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ruta)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="ListaCategorias">Volver a Categorias</a>
+</div>
